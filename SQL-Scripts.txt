@@ -1,0 +1,53 @@
+ShowOn Application Database design 
+
+CREATE DATABASE SHOW_ON;
+
+USE SHOW_ON;
+
+
+CREATE TABLE SHOW_ON.users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO SHOW_ON.users (username, password, email) VALUES
+('Tom', 'tom123', 'tom@example.com'),
+('Sam', 'sam123', 'sam@example.com');
+
+
+CREATE TABLE movies (
+    movie_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    genre VARCHAR(255),
+    release_date DATE,
+    duration INT,  -- duration in minutes
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO movies (title, description, genre, release_date, duration) VALUES
+('Movie 1', 'Description of movie 1', 'Action', '2020-01-01', 120),
+('Movie 2', 'Description of movie 2', 'Drama', '2019-05-15', 90);
+
+
+
+CREATE TABLE watch_history (
+    history_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    movie_id INT,
+    watched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (movie_id) REFERENCES movies(movie_id)
+);
+
+INSERT INTO watch_history (user_id, movie_id) VALUES
+(1, 1),
+(1, 2),
+(2, 1);
+
+
+
