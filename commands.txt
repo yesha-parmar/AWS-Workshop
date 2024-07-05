@@ -1,0 +1,53 @@
+ CPU stress command : sudo stress --cpu 1 --timeout 60 
+ 
+ 
+ -----------------------------------------------------
+ 
+ 
+ Bukcet policy: 
+ {
+  "Id": "Policy1720026940124",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1720026812065",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::yesha-s3-demo1/*",
+      "Principal": "*"
+    }
+  ]
+}
+
+--------------------------------------------------------
+
+load balancer function
+
+export const handler = async (event) => {
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Welcome</title>
+        </head>
+        <body>
+            <h1>Hello from AWS Lambda!</h1>
+            <p>This is a simple HTML response.</p>
+        </body>
+        </html>
+    `;
+
+    const response = {
+        statusCode: 200,
+        headers: {
+            'Content-Type': 'text/html'
+        },
+        body: htmlContent
+    };
+
+    return response;
+};
+
+-----------------------------------------------------------
